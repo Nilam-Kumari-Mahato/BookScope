@@ -42,7 +42,7 @@ export default function BookDetail(){
             >
                 <div className="flex flex-row gap-5 md:gap-0 md:justify-around">   
                     <div className="">
-                    <img src={data.thumbnail} alt="Book Cover" className="h-40 w-30 md:h-80 md:w-60 drop-shadow-gray-800 drop-shadow-2xl" />
+                    <img src={data.thumbnail} alt="Book Cover" className="h-40 w-30 md:h-80 md:w-60 drop-shadow-gray-800 drop-shadow-xl" />
                     </div>
                     <div className=" w-50 md:w-150 flex flex-col items-start justify-center">
                         <div>
