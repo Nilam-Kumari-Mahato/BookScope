@@ -6,6 +6,7 @@ import NavBar from "../components/layout/NavBar"
 import Ratingstars from "../components/ui/Ratingstars";
 import SearchBar from "../components/ui/SearchBar";
 import { motion } from "motion/react"
+import PageLoader from "../components/ui/Pageloader";
 
 
 
@@ -26,7 +27,7 @@ export default function BookDetail(){
     } , [id]);
 
     if (!data) {
-    return <p className="p-6">Loading book details...</p>;
+    return <PageLoader />;
     }
     return (
         <div className="bg-amber-900/5 h-screen overflow-scroll no-scrollbar ">
@@ -63,7 +64,7 @@ export default function BookDetail(){
                     </div>
                 </div>
                 
-                <div className="bg-yellow-50  mt-5 md:ml-20 p-5 md:p-10 rounded-2xl md:w-300 flex  flex-col gap-5 items-start ">
+                <div className="bg-yellow-50  mt-5 md:ml-20 p-5 md:p-10 rounded-2xl md:w-300 flex  flex-col gap-5 items-start shadow-2xl">
                     <p className="text-lg md:text-2xl font-bold">Description:</p>
                     <p className=" md:w-240">{data.description}</p>
                 </div>

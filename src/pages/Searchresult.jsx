@@ -7,6 +7,7 @@ import { slugify } from "../utils/slugify";
 import NavBar from "../components/layout/NavBar";
 import SearchBar from "../components/ui/SearchBar";
 import { motion } from "motion/react"
+import PageLoader from "../components/ui/Pageloader";
 
 
 
@@ -30,7 +31,7 @@ export default function Searchresults(){
     } , [query])
 
     if(loading) {
-        return <p>searching ....</p>
+        return <PageLoader />
     }
 
     return(
@@ -58,7 +59,7 @@ export default function Searchresults(){
                         <div 
                             key={book.id} 
                             onClick={ () => navigate(`/book/${book.id}/${slugify(book.title)}`)}
-                            className="flex flex-row gap-5 md:gap-15 items-center m-2 mt-5 md:m-5 p-2 md:p-4 bg-amber-50 rounded-xl transition-all duration-200 ease-in-out hover:border-amber-800 hover:border hover:scale-102 shadow"
+                            className="flex flex-row gap-5 md:gap-15 items-center m-2 mt-5 md:m-5 p-2 md:p-4 bg-amber-50 rounded-xl transition-all duration-200 ease-in-out hover:border-amber-800 hover:border hover:scale-102 shadow-xl"
                         >
                             <div >
                                 <img src={book.thumbnail} alt="book cover"  className=" h-20 w-20 md:h-30  transition-all duration-200 ease-in-out hover:drop-shadow-gray-800 hover:drop-shadow-xl"/>
