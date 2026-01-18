@@ -13,7 +13,7 @@ export default function SearchBar(){
 
     return(
         <div id="search-bar" className="fixed top-0 w-full bg-white flex justify-center z-1 border-gray-200 border">
-            <form onSubmit={handleSubmit} className="md:w-190 border rounded-full m-2 flex flex-row items-center ">
+            <form onSubmit={handleSubmit} className="sm:w-100 md:w-190 border rounded-full m-2 flex flex-row items-center ">
                 <input 
                     type="text"
                     value={value}
