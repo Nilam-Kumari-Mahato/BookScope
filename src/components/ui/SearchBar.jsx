@@ -38,7 +38,7 @@ export default function SearchBar(){
                         className="flex-1 border-none outline-none focus:outline-none rounded-full p-2 bg-transparent"
                     />
                     <button className="h-10 w-10 flex justify-center items-center rounded-full transition-all duration-200 ease-in-out hover:scale-110 hover:text-gray-600 cursor-pointer ">
-                        <Search size={22}/>
+                        <Search size={30}/>
                     </button>
                 </form>
             </div>

@@ -8,21 +8,20 @@ export default function NavBar(){
     const location = useLocation()
     
     const handleExploreClick= ()=>{
-            const section = document.getElementById("explore");
-            section?.scrollIntoView({behavior : "smooth"})
+        if (location.pathname === "/") {
+        // Already on home → just scroll
+        const section = document.getElementById("explore");
+        section?.scrollIntoView({ behavior: "smooth" });
+        } else {
+        // Navigate home + tell it where to scroll
+        navigate("/", { state: { scrollTo: "explore" } });
+        }
     }
 
     const handleSearchClick = () => {
-        if (location.pathname !== "/") {
-        navigate("/");
-
-        // Give Home time to mount SearchBar
         setTimeout(() => {
             window.dispatchEvent(new Event("focus-search"));
         }, 300);
-        } else {
-        window.dispatchEvent(new Event("focus-search"));
-        }
     };
 
 

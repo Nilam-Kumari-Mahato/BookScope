@@ -65,14 +65,14 @@ export default function Home(){
             <NavBar />
 
             <SearchBar />     
-            <motion.div className="bg-yellow-50 m-1 mt-14 md:ml-16 rounded-2xl p-2 lg:p-10 pt-5 overflow-scroll no-scrollbar">
+            <motion.div className="bg-yellow-50 m-1 mt-14 md:ml-16 rounded-2xl p-2 lg:p-10 pt-5 overflow-scroll no-scrollbar ">
                 {/*Desktop  Hero Section */}
                 <motion.div
                     layout
                     initial={{ scale: 0.95, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.6 }}
-                    className=" hidden md:flex justify-between gap-20 m-2">
+                    className=" hidden md:flex justify-between gap-20 m-2 ">
                     
                     <div className=" flex flex-col">
                         <h1 className=" font-['Protest_Guerrilla'] md:text-6xl lg:text-7xl xl:text-8xl text-amber-900 mb-2">BookScope</h1>
@@ -87,7 +87,12 @@ export default function Home(){
                 </motion.div>
 
                 {/* Mobile Hero Section */}
-                <div className="md:hidden flex flex-col items-center gap-4 mb-16">
+                <motion.div
+                    layout
+                    initial={{ scale: 0.95, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}t
+                    transition={{ duration: 0.6 }}
+                    className="md:hidden flex flex-col items-center gap-4 mb-16">
                     <div >
                         <h1 className="font-['Protest_Guerrilla'] text-4xl sm:text-5xl text-amber-900 mb-2">BookScope</h1>
                         <h3 className="text-xl font-bold ">Discover. Decide. Read.</h3>
@@ -96,7 +101,7 @@ export default function Home(){
                     <div>
                         <img src={hero} alt="stacked books" className="h-80" />
                     </div>
-                </div>
+                </motion.div>
 
                 {/* Explore Section & Categories */}
 
