@@ -1,10 +1,24 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate  } from "react-router-dom";
+import { useState , useRef ,useEffect } from "react";
 import { Search } from "lucide-react";
 
 export default function SearchBar(){
     const [value , setValue] = useState("");
     const navigate = useNavigate();
+    const inputRef = useRef();
+
+    useEffect(() => {
+            const handleFocus = () => {
+            inputRef.current?.scrollIntoView({ behavior: "smooth" });
+            inputRef.current?.focus();
+            };
+
+            window.addEventListener("focus-search", handleFocus);
+
+            return () => {
+            window.removeEventListener("focus-search", handleFocus);
+            };
+    }, []);
 
     function handleSubmit(e){
         e.preventDefault();
@@ -12,9 +26,10 @@ export default function SearchBar(){
     }
 
     return(
-        <div id="search-bar" className="fixed top-0 w-full    flex justify-center z-1 ">
+        <div className="fixed top-0 w-full    flex justify-center z-1 ">
             <form onSubmit={handleSubmit} className="w-190 border rounded-full m-2 flex flex-row justify-between items-center bg-white/80">
                 <input 
+                    ref={inputRef}
                     type="text"
                     value={value}
                     onChange={(e) => setValue(e.target.value)}

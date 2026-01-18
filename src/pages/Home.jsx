@@ -15,6 +15,7 @@ import romanceBooks from "../assets/romance.png"
 import SearchBar from "../components/ui/SearchBar"
 import { motion } from "motion/react"
 import { BookCardSkeleton } from "../components/skeletons/BookcardSkeleton"
+import { useLocation } from "react-router-dom"
 
 
 export default function Home(){
@@ -22,6 +23,8 @@ export default function Home(){
     const[booksByCategory , setBooksByCategory] = useState({});
     const [loading , setLoading] = useState(false);
     const scrollref = useRef({});
+    const location = useLocation();
+
 
     useEffect(() => {
         const fetchAllCategories = async () => {
@@ -41,6 +44,19 @@ export default function Home(){
 
         fetchAllCategories();
     }, []);
+
+
+    useEffect(() => {
+        if (location.state?.scrollTo) {
+            const section = document.getElementById(
+            location.state.scrollTo
+            );
+
+            setTimeout(() => {
+            section?.scrollIntoView({ behavior: "smooth" });
+            }, 200);
+        }
+    }, [location]);
 
 
 
@@ -84,7 +100,7 @@ export default function Home(){
 
                 {/* Explore Section & Categories */}
 
-                <div className="flex flex-col gap-10 ">
+                <div id="explore" className="flex flex-col gap-10 ">
                     <motion.div
                         layout
                         initial={{ scale: 0.95, opacity: 0 }}
