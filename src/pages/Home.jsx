@@ -159,7 +159,7 @@ export default function Home(){
 
                                 <div
                                     ref={(el) => (scrollref.current[category.id] = el)}
-                                    className="flex flex-row gap-10 overflow-x-auto no-scrollbar pb-4"
+                                    className="flex flex-row gap-5 md:gap-10 overflow-x-auto no-scrollbar pb-4 mb-10"
                                     >
                                     {loading
                                         ? Array.from({ length: 10 }).map((_, i) => (
