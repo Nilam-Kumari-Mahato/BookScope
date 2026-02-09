@@ -26,23 +26,47 @@ export default function Home(){
     const location = useLocation();
 
 
-    useEffect(() => {
+   useEffect(() => {
+        let isMounted = true;
+
         const fetchAllCategories = async () => {
             setLoading(true);
-            const newBooksByCategory = {};
 
-            for (const category of categories) {
-            const res = await fetchBooksByCategory(category.query);
+            try {
+            const results = await Promise.all(
+                categories.map((category) =>
+                fetchBooksByCategory(category.query)
+                    .then((res) => ({
+                    id: category.id,
+                    items: res?.items?.map(normalizeHomeBook) || [],
+                    }))
+                    .catch(() => ({
+                    id: category.id,
+                    items: [],
+                    }))
+                )
+            );
 
-            newBooksByCategory[category.id] =
-                res?.items?.map(normalizeHomeBook) || [];
+            if (!isMounted) return;
+
+            const grouped = {};
+            results.forEach(({ id, items }) => {
+                grouped[id] = items;
+            });
+
+            setBooksByCategory(grouped);
+            } catch (err) {
+            console.warn(err.message);
+            } finally {
+            if (isMounted) setLoading(false);
             }
-
-            setBooksByCategory(newBooksByCategory);
-            setLoading(false);
         };
 
         fetchAllCategories();
+
+        return () => {
+            isMounted = false;
+        };
     }, []);
 
 
@@ -90,7 +114,7 @@ export default function Home(){
                 <motion.div
                     layout
                     initial={{ scale: 0.95, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}t
+                    animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.6 }}
                     className="md:hidden flex flex-col items-center gap-4 mb-16">
                     <div >
